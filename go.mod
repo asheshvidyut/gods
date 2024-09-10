@@ -1,3 +1,3 @@
-module github.com/absolutelightning/gods/v2
+module github.com/absolutelightning/gods
 
 go 1.21
