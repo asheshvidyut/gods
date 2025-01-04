@@ -304,9 +304,14 @@ func (tree *Tree) Lower(key interface{}) (lower *Node, found bool) {
 	return nil, false
 }
 
-// Greater finds the smallest node strictly greater than the given key.
-// Returns the greater node or nil if no such node is found.
-// Second return parameter is true if a greater node was found, otherwise false.
+// Greater finds greater node of the input key, return the greater node or nil if no ceiling is found.
+// Second return parameter is true if ceiling was found, otherwise false.
+//
+// Greater node is defined as the smallest node that is larger than the given node.
+// A greater node may not be found, either because the tree is empty, or because
+// all nodes in the tree are smaller than the given node.
+//
+// Key should adhere to the comparator's type assertion, otherwise method panics.
 func (tree *Tree) Greater(key interface{}) (greater *Node, found bool) {
 	found = false
 	node := tree.Root
@@ -324,35 +329,6 @@ func (tree *Tree) Greater(key interface{}) (greater *Node, found bool) {
 	}
 	if found {
 		return greater, true
-	}
-	return nil, false
-}
-
-// Ceiling finds ceiling node of the input key, return the ceiling node or nil if no ceiling is found.
-// Second return parameter is true if ceiling was found, otherwise false.
-//
-// Ceiling node is defined as the smallest node that is larger than or equal to the given node.
-// A ceiling node may not be found, either because the tree is empty, or because
-// all nodes in the tree are smaller than the given node.
-//
-// Key should adhere to the comparator's type assertion, otherwise method panics.
-func (tree *Tree) Ceiling(key interface{}) (ceiling *Node, found bool) {
-	found = false
-	node := tree.Root
-	for node != nil {
-		compare := tree.Comparator(key, node.Key)
-		switch {
-		case compare == 0:
-			return node, true
-		case compare < 0:
-			ceiling, found = node, true
-			node = node.Left
-		case compare > 0:
-			node = node.Right
-		}
-	}
-	if found {
-		return ceiling, true
 	}
 	return nil, false
 }
