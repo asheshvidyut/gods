@@ -6,7 +6,7 @@ package circularbuffer
 
 import (
 	"encoding/json"
-	"github.com/emirpasic/gods/containers"
+	"github.com/absolutelightning/gods/containers"
 )
 
 // Assert Serialization implementation

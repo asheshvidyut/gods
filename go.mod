@@ -1,3 +1,3 @@
-module github.com/emirpasic/gods
+module github.com/absolutelightning/gods
 
 go 1.2

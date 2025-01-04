@@ -11,8 +11,8 @@ package avltree
 
 import (
 	"fmt"
-	"github.com/emirpasic/gods/trees"
-	"github.com/emirpasic/gods/utils"
+	"github.com/absolutelightning/gods/trees"
+	"github.com/absolutelightning/gods/utils"
 )
 
 // Assert Tree implementation

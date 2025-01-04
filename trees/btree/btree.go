@@ -19,8 +19,8 @@ package btree
 import (
 	"bytes"
 	"fmt"
-	"github.com/emirpasic/gods/trees"
-	"github.com/emirpasic/gods/utils"
+	"github.com/absolutelightning/gods/trees"
+	"github.com/absolutelightning/gods/utils"
 	"strings"
 )
 

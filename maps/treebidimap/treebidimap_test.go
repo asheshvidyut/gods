@@ -7,7 +7,7 @@ package treebidimap
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/emirpasic/gods/utils"
+	"github.com/absolutelightning/gods/utils"
 	"strings"
 	"testing"
 )

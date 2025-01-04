@@ -13,9 +13,9 @@ package binaryheap
 
 import (
 	"fmt"
-	"github.com/emirpasic/gods/lists/arraylist"
-	"github.com/emirpasic/gods/trees"
-	"github.com/emirpasic/gods/utils"
+	"github.com/absolutelightning/gods/lists/arraylist"
+	"github.com/absolutelightning/gods/trees"
+	"github.com/absolutelightning/gods/utils"
 	"strings"
 )
 

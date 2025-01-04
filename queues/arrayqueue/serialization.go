@@ -5,7 +5,7 @@
 package arrayqueue
 
 import (
-	"github.com/emirpasic/gods/containers"
+	"github.com/absolutelightning/gods/containers"
 )
 
 // Assert Serialization implementation

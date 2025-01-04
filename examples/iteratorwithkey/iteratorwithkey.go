@@ -6,7 +6,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/emirpasic/gods/maps/treemap"
+	"github.com/absolutelightning/gods/maps/treemap"
 	"strings"
 )
 

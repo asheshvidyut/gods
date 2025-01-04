@@ -4,7 +4,7 @@
 
 package linkedlistqueue
 
-import "github.com/emirpasic/gods/containers"
+import "github.com/absolutelightning/gods/containers"
 
 // Assert Iterator implementation
 var _ containers.IteratorWithIndex = (*Iterator)(nil)

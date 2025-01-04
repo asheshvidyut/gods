@@ -4,7 +4,7 @@
 
 package doublylinkedlist
 
-import "github.com/emirpasic/gods/containers"
+import "github.com/absolutelightning/gods/containers"
 
 // Assert Enumerable implementation
 var _ containers.EnumerableWithIndex = (*List)(nil)
