@@ -245,6 +245,62 @@ func TestMapCeiling(t *testing.T) {
 	}
 }
 
+func TestMapLower(t *testing.T) {
+	m := NewWithIntComparator()
+	m.Put(7, "g")
+	m.Put(3, "c")
+	m.Put(1, "a")
+
+	// key,expectedKey,expectedValue,expectedFound
+	tests1 := [][]interface{}{
+		{-1, nil, nil, false},
+		{0, nil, nil, false},
+		{1, nil, nil, false},
+		{2, 1, "a", true},
+		{3, 1, "a", true},
+		{4, 3, "c", true},
+		{7, 3, "c", true},
+		{8, 7, "g", true},
+	}
+
+	for _, test := range tests1 {
+		// retrievals
+		actualKey, actualValue := m.Lower(test[0])
+		actualFound := actualKey != nil && actualValue != nil
+		if actualKey != test[1] || actualValue != test[2] || actualFound != test[3] {
+			t.Errorf("Got %v, %v, %v, expected %v, %v, %v", actualKey, actualValue, actualFound, test[1], test[2], test[3])
+		}
+	}
+}
+
+func TestMapGreater(t *testing.T) {
+	m := NewWithIntComparator()
+	m.Put(7, "g")
+	m.Put(3, "c")
+	m.Put(1, "a")
+
+	// key,expectedKey,expectedValue,expectedFound
+	tests1 := [][]interface{}{
+		{-1, 1, "a", true},
+		{0, 1, "a", true},
+		{1, 3, "c", true},
+		{2, 3, "c", true},
+		{3, 7, "g", true},
+		{4, 7, "g", true},
+		{7, nil, nil, false},
+		{8, nil, nil, false},
+	}
+
+	for _, test := range tests1 {
+		// retrievals
+		actualKey, actualValue := m.Greater(test[0])
+		actualFound := actualKey != nil && actualValue != nil
+		if actualKey != test[1] || actualValue != test[2] || actualFound != test[3] {
+			t.Errorf("Got %v, %v, %v, expected %v, %v, %v", actualKey, actualValue, actualFound, test[1], test[2], test[3])
+		}
+	}
+}
+
 func sameElements(a []interface{}, b []interface{}) bool {
 	if len(a) != len(b) {
 		return false
