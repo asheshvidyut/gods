@@ -13,6 +13,7 @@ package redblacktree
 
 import (
 	"fmt"
+
 	"github.com/emirpasic/gods/trees"
 	"github.com/emirpasic/gods/utils"
 )
@@ -243,6 +244,86 @@ func (tree *Tree) Floor(key interface{}) (floor *Node, found bool) {
 	}
 	if found {
 		return floor, true
+	}
+	return nil, false
+}
+
+// Ceiling finds ceiling node of the input key, return the ceiling node or nil if no ceiling is found.
+// Second return parameter is true if ceiling was found, otherwise false.
+//
+// Ceiling node is defined as the smallest node that is larger than or equal to the given node.
+// A ceiling node may not be found, either because the tree is empty, or because
+// all nodes in the tree are smaller than the given node.
+//
+// Key should adhere to the comparator's type assertion, otherwise method panics.
+func (tree *Tree) Ceiling(key interface{}) (ceiling *Node, found bool) {
+	found = false
+	node := tree.Root
+	for node != nil {
+		compare := tree.Comparator(key, node.Key)
+		switch {
+		case compare == 0:
+			return node, true
+		case compare < 0:
+			ceiling, found = node, true
+			node = node.Left
+		case compare > 0:
+			node = node.Right
+		}
+	}
+	if found {
+		return ceiling, true
+	}
+	return nil, false
+}
+
+// Lower Finds lower node of the input key, return the lower node or nil if no lower is found.
+// Second return parameter is true if lower was found, otherwise false.
+//
+// Floor node is defined as the largest node that is smaller than the given node.
+// A lower node may not be found, either because the tree is empty, or because
+// all nodes in the tree are larger than the given node.
+//
+// Key should adhere to the comparator's type assertion, otherwise method panics.
+func (tree *Tree) Lower(key interface{}) (lower *Node, found bool) {
+	found = false
+	node := tree.Root
+	for node != nil {
+		compare := tree.Comparator(key, node.Key)
+		switch {
+		case compare <= 0: // If key is less than or equal, move to the left subtree
+			node = node.Left
+		case compare > 0: // If key is greater, update the lower node and move to the right
+			lower, found = node, true
+			node = node.Right
+		}
+	}
+	if found {
+		return lower, true
+	}
+	return nil, false
+}
+
+// Greater finds the smallest node strictly greater than the given key.
+// Returns the greater node or nil if no such node is found.
+// Second return parameter is true if a greater node was found, otherwise false.
+func (tree *Tree) Greater(key interface{}) (greater *Node, found bool) {
+	found = false
+	node := tree.Root
+	for node != nil {
+		compare := tree.Comparator(key, node.Key)
+		switch {
+		case compare < 0:
+			// If the key is smaller, this node is a candidate for "greater"
+			greater, found = node, true
+			node = node.Left
+		case compare >= 0:
+			// Move to the right subtree for strictly greater keys
+			node = node.Right
+		}
+	}
+	if found {
+		return greater, true
 	}
 	return nil, false
 }
